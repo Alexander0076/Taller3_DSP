@@ -74,10 +74,10 @@ namespace La_tiendita.Controllers
             return RedirectToAction("Index", modelo.listaVentas());
         }
         [ActionName("Editar")]
-        public ActionResult edit(int listaVendedor,int Id_Ventas, TimeSpan Hora_venta, DateTime Fecha_venta, Decimal Total_venta)
+        public ActionResult edit(int listaVendedor, int Id_venta, TimeSpan Hora_venta, DateTime Fecha_venta, Decimal Total_venta)
         {
             Ventas ventas = new Ventas();
-            ventas.Id_venta = Id_Ventas;
+            ventas.Id_venta = Id_venta;
             ventas.Hora_venta = Hora_venta;
             ventas.Fecha_venta = Fecha_venta;
             ventas.Total_venta = Total_venta;

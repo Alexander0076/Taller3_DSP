@@ -7,10 +7,10 @@
 <h2>Insertar</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Agregar", "Ventas", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Ventas</h4>
         <hr />

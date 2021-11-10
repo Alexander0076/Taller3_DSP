@@ -21,8 +21,7 @@ namespace La_tiendita.Models
             this.DetalleVenta = new HashSet<DetalleVenta>();
         }
 
-
-        [Display(Name = "Id Ventas")]
+        [Display(Name = "Ventas")]
         public int Id_venta { get; set; }
 
         [Display(Name = "Hora de venta")]
@@ -36,7 +35,7 @@ namespace La_tiendita.Models
 
         [Display(Name = "Vendedor")]
         public Nullable<int> Id_vendedor { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleVenta> DetalleVenta { get; set; }
         public virtual Vendedor Vendedor { get; set; }

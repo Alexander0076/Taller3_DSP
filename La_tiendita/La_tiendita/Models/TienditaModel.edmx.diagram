@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="64395b9e9f8e424db7a3ad43b514d8a8" Name="Diagram1">
+      <Diagram DiagramId="add80e6e23464731b692054ac7bab19d" Name="Diagram1">
         <EntityTypeShape EntityType="La_tienditaDBModel.Categoria" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="La_tienditaDBModel.DetalleVenta" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="La_tienditaDBModel.Producto" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="La_tienditaDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="La_tienditaDBModel.Vendedor" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="La_tienditaDBModel.Ventas" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="La_tienditaDBModel.FK__Producto__Id_cat__3B75D760" ManuallyRouted="false" />
-        <AssociationConnector Association="La_tienditaDBModel.FK__DetalleVe__Id_pr__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="La_tienditaDBModel.FK__DetalleVe__Id_ve__412EB0B6" ManuallyRouted="false" />
-        <AssociationConnector Association="La_tienditaDBModel.FK__Ventas__Id_vende__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="La_tienditaDBModel.FK__Producto__Id_cat__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="La_tienditaDBModel.FK__DetalleVe__Id_pr__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="La_tienditaDBModel.FK__DetalleVe__Id_ve__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="La_tienditaDBModel.FK__Ventas__Id_vende__2B3F6F97" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -186,7 +186,7 @@ namespace La_tiendita.Controllers
         {
             DetalleVenta detalle = contexto.DetalleVenta.Find(detalleid.Id_detalle);
             detalle.Id_producto = detalleid.Id_producto;
-            detalle.Id_venta = detalleid.Id_producto;
+            detalle.Id_venta = detalleid.Id_venta;
             detalle.Cantidad = detalleid.Cantidad;
             detalle.Subtotal = detalleid.Subtotal;
             return contexto.SaveChanges();
@@ -204,6 +204,58 @@ namespace La_tiendita.Controllers
         {
             DetalleVenta detalle = contexto.DetalleVenta.Find(id);
             return detalle;
+        }
+        //----------------------------------------------------------------------------------------------
+        public List<Vendedor> listaBuscarVendedor(String Vendedor)
+        {
+
+            if (Vendedor.Equals(""))
+            {
+                return contexto.Vendedor.ToList();
+            }
+            else
+            {
+                var resultados = from cc in contexto.Vendedor
+                                 where cc.Nombre_vendedor.Contains(Vendedor)
+                                 select cc;
+                return resultados.ToList();
+            }
+        }
+
+
+
+
+        public int insertarVendedor(Vendedor vendedor)
+        {
+            contexto.Vendedor.Add(vendedor);
+            return contexto.SaveChanges();
+
+        }
+
+        public int editarVendedor(Vendedor vendedorid)
+        {
+            Vendedor vendedor = contexto.Vendedor.Find(vendedorid.Id_vendedor);
+            vendedor.Nombre_vendedor = vendedorid.Nombre_vendedor;
+            vendedor.Correo_vendedor = vendedorid.Correo_vendedor;
+            vendedor.Telefono_vendedor = vendedorid.Telefono_vendedor;
+            vendedor.Dui_vendedor = vendedorid.Dui_vendedor;
+            vendedor.Usuario_vendedor = vendedorid.Usuario_vendedor;
+            vendedor.contasena = vendedorid.contasena;
+            return contexto.SaveChanges();
+
+        }
+
+        public int eliminarVendedor(int id)
+        {
+            Vendedor vendedor = contexto.Vendedor.Find(id);
+            contexto.Vendedor.Remove(vendedor);
+            return contexto.SaveChanges();
+        }
+
+        public Vendedor obtenerVendedor(int id)
+        {
+            Vendedor vendedor = contexto.Vendedor.Find(id);
+            return vendedor;
         }
     }
 }

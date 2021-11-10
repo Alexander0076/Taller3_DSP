@@ -1,0 +1,90 @@
+﻿@model IEnumerable<La_tiendita.Models.Vendedor>
+
+@{
+    ViewBag.Title = "Tabla";
+}
+@{
+    Layout = null;
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+}
+<h2>Tabla</h2>
+
+<p>
+    @Html.ActionLink("Registrar", "Insertar", null, new { @class = "btn btn-info" })
+</p>
+<p>
+    @Html.ActionLink("Iniciar sesión", "Index", null, new { @class = "btn btn-info" })
+</p>
+
+<br />
+
+<div class="form-inline my-2 my-lg-0">
+    @using (Html.BeginForm("Buscar", "Home", FormMethod.Post))
+    {
+
+
+        <input class="form-control mr-sm-2" name="valor" type="search" placeholder="Search" aria-label="Search">
+        <input type="submit" value="Buscar" class="btn btn-outline-success my-2 my-sm-0" />
+    }
+</div>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_vendedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo_vendedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono_vendedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dui_vendedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario_vendedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contasena)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_vendedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo_vendedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono_vendedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dui_vendedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario_vendedor)
+            </td>
+            <td>
+                ***************
+            </td>
+            <td>
+                @Html.ActionLink("Modificar", "Modificar", new { id = item.Id_vendedor }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id_vendedor }, new { miatributo = "valor1", @class = "btn btn-danger", onclick = "return confirm('¿Estas seguro de eliminar este registro?');" }) |
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+}

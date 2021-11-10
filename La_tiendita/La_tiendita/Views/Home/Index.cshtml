@@ -1,90 +1,98 @@
-﻿@model IEnumerable<La_tiendita.Models.Producto>
+﻿@model La_tiendita.Models.Vendedor
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Agregar", "Insertar", null, new { @class = "btn btn-info" })
-</p>
-<br />
-
-<div class="form-inline my-2 my-lg-0">
-    @using (Html.BeginForm("Buscar", "Home", FormMethod.Post))
-    {
-
-
-        <input class="form-control mr-sm-2" name="valor" type="search" placeholder="Search" aria-label="Search">
-        <input type="submit" value="Buscar" class="btn btn-outline-success my-2 my-sm-0" />
-    }
-</div>
-<br />
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.produtco)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion_producto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_caducidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.existencia_de_producto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.precio_compra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.precio_venta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Categoria.categoria)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.produtco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion_producto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha_caducidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.existencia_de_producto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.precio_compra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.precio_venta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.categoria)
-            </td>
-            <td>
-                @Html.ActionLink("Modificar", "Modificar", new { id = item.Id_producto }, new { @class = "btn btn-success" }) |
-                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id_producto }, new { miatributo = "valor1", @class = "btn btn-danger", onclick = "return confirm('¿Estas seguro de eliminar este registro?');" }) |
-            </td>
-        </tr>
-    }
-
-</table>
-
-@if (TempData["mensaje"] != null)
-{
-
-    <div class="alert alert-success" role="alert">
-        @TempData["mensaje"]
-    </div>
+@{
+    Layout = null;
 
 }
+
+    <title>Login</title>
+
+    <!-- Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- style CSS -->
+    <link rel="stylesheet" href="~/Views/Home/css/style.css" type="text/css" media="all">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href=""~/Views/Home/css/font-awesome.min.css" type="text/css" media="all">
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css?family=Mukta:300,400,500" rel="stylesheet">
+
+
+<!-- //Head -->
+<!-- Body -->
+<body>
+
+    <section class="main">
+
+        <div class="bottom-grid">
+            <div class="logo">
+                <h1> <a href="#">Login</a></h1>
+            </div>
+        </div>
+        <div class="content-w3ls">
+            <div class="text-center icon">
+                <span class="fa fa-meetup"></span>
+            </div>
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="content-bottom">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <form action="#" method="post">
+                        <div class="field-group">
+                            @Html.LabelFor(model => model.Usuario_vendedor, htmlAttributes: new { @class = "fa fa-user", @aria_hidden = "true" })
+                            <div class="wthree-field">
+                                @Html.EditorFor(model => model.Usuario_vendedor, new { htmlAttributes = new { @class = "form-control", @id = "text1", @placeholder = "Username" } })
+                                @Html.ValidationMessageFor(model => model.Usuario_vendedor, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="field-group">
+                            @Html.LabelFor(model => model.contasena, htmlAttributes: new { @class = "fa fa-lock", @aria_hidden = "true" })
+                            <div class="wthree-field">
+                                @Html.EditorFor(model => model.contasena, new { htmlAttributes = new { @class = "form-control", @id = "myInput", @type = "Password", @placeholder = "Password" } })
+                                @Html.ValidationMessageFor(model => model.contasena, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="wthree-field">
+                            @*<input type="submit" value="Iniciar Sesión" class="btn btn-default" />*@
+                            <button type="submit" class="btn">Sign in</button>
+                        </div>
+                        <ul class="list-login-bottom">
+                            <li class="">
+                                @Html.ActionLink("Registrar", "Insertar", null, new { @class = "text-right" })
+                            </li>
+                            <li class="clearfix"></li>
+                        </ul>
+                    </form>
+
+
+                    
+
+                </div>
+            }
+
+                <div class="wthree-field">
+                    @Html.ActionLink("Tabla", "Tabla", null, new { @class = "btn" })
+                </div>
+        </div>
+        <div class="copyright">
+            <p>© 2021</p>
+        </div>
+    </section>
+
+</body>
+
+
+</html>
+
+
+

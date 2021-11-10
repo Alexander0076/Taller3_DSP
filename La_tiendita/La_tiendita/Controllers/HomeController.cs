@@ -9,108 +9,110 @@ namespace La_tiendita.Controllers
 {
     public class HomeController : Controller
     {
+        La_tienditaDBEntities contexto = new La_tienditaDBEntities();
         ConsultasModelo modelo = new ConsultasModelo();
+        // GET: Login
         public ActionResult Index()
         {
-            return View(modelo.listaProducto());
+            return View();
+        }
+
+        public ActionResult Tabla()
+        {
+            return View(modelo.listaVendedor());
+        }
+
+        [HttpPost]
+        public ActionResult Index(Vendedor log)
+        {
+            var user = contexto.Vendedor.Where(x => x.Usuario_vendedor == log.Usuario_vendedor && x.contasena == log.contasena).Count();
+            if (user > 0)
+            {
+                return RedirectToAction("Index", "Producto");
+            }
+            else
+            {
+                return View();
+            }
+
+
         }
 
         public ActionResult Insertar()
         {
-
-            List<Categoria> lista = modelo.listaCategoria();
-            List<SelectListItem> listaO = new List<SelectListItem>();
-            foreach (Categoria item in lista)
-            {
-                listaO.Add(new SelectListItem { Text = item.categoria, Value = item.Id_categoria.ToString() });
-            }
-            ViewBag.listaCategoria = listaO;
             return View();
         }
 
         public ActionResult Modificar(int id)
         {
-            List<Categoria> lista = modelo.listaCategoria();
+            List<Ventas> lista = modelo.listaVentas();
             List<SelectListItem> listaO = new List<SelectListItem>();
-            Producto producto = modelo.obtenerProducto(id);
-            foreach (Categoria item in lista)
+            Vendedor vendedor = modelo.obtenerVendedor(id);
+            foreach (Ventas item in lista)
             {
-                if (item.Id_categoria == producto.Categoria.Id_categoria)
+                if (item.Id_vendedor == vendedor.Id_vendedor)
                 {
-                    listaO.Add(new SelectListItem { Text = item.categoria, Value = item.Id_categoria.ToString(), Selected = true });
+                    listaO.Add(new SelectListItem { Text = item.Vendedor.Nombre_vendedor, Value = item.Id_vendedor.ToString(), Selected = true });
 
                 }
                 else
                 {
-                    listaO.Add(new SelectListItem { Text = item.categoria, Value = item.Id_categoria.ToString() });
+                    listaO.Add(new SelectListItem { Text = item.Vendedor.Nombre_vendedor, Value = item.Id_vendedor.ToString() });
 
                 }
 
             }
-            ViewBag.listaCategoria = listaO;
-            return View(modelo.obtenerProducto(id));
+            ViewBag.listaVentas = listaO;
+            return View(modelo.obtenerVendedor(id));
         }
 
         [ActionName("Buscar")]
         public ActionResult buscar(String valor)
         {
 
-            return View("Index", modelo.listaBuscarProducto(valor));
+            return View("Tabla", modelo.listaBuscarVendedor(valor));
         }
 
 
-        [ActionName("Agregar")]
-        public ActionResult insert(int listaCategoria, String produtco, String descripcion_producto, int existencia_de_producto, decimal precio_compra, decimal precio_venta, DateTime fecha_caducidad)
+        [ActionName("Registrar")]
+        public ActionResult insert(String Nombre_vendedor, String Correo_vendedor, String Telefono_vendedor, String Dui_vendedor, String Usuario_vendedor, String contasena)
         {
-            Producto producto = new Producto();
-            producto.produtco = produtco;
-            producto.descripcion_producto = descripcion_producto;
-            producto.fecha_caducidad = fecha_caducidad;
-            producto.existencia_de_producto = existencia_de_producto;
-            producto.precio_compra = precio_compra;
-            producto.precio_venta = precio_venta;
-            producto.Id_categoria = listaCategoria;
+            Vendedor vendedor = new Vendedor();
+            vendedor.Nombre_vendedor = Nombre_vendedor;
+            vendedor.Correo_vendedor = Correo_vendedor;
+            vendedor.Telefono_vendedor = Telefono_vendedor;
+            vendedor.Dui_vendedor = Dui_vendedor;
+            vendedor.Usuario_vendedor = Usuario_vendedor;
+            vendedor.contasena = contasena;
 
-            modelo.insertarProducto(producto);
-            TempData["mensaje"] = "Producto agregado exitosamente";
-            return RedirectToAction("Index", modelo.listaProducto());
+            modelo.insertarVendedor(vendedor);
+            TempData["mensaje"] = "Vendedor agregado exitosamente";
+            return RedirectToAction("Index", modelo.listaVendedor());
         }
         [ActionName("Editar")]
-        public ActionResult edit(int listaCategoria, int Id_producto, String produtco, String descripcion_producto, int existencia_de_producto, decimal precio_compra, decimal precio_venta, DateTime fecha_caducidad)
+        public ActionResult edit(int Id_vendedor, String Nombre_vendedor, String Correo_vendedor, String Telefono_vendedor, String Dui_vendedor, String Usuario_vendedor, String contasena)
         {
-            Producto producto = new Producto();
-            producto.Id_producto = Id_producto;
-            producto.produtco = produtco;
-            producto.descripcion_producto = descripcion_producto;
-            producto.fecha_caducidad = fecha_caducidad;
-            producto.existencia_de_producto = existencia_de_producto;
-            producto.precio_compra = precio_compra;
-            producto.precio_venta = precio_venta;
-            producto.Id_categoria = listaCategoria;
+            
+            Vendedor vendedor = new Vendedor();
+            vendedor.Id_vendedor = Id_vendedor;
+            vendedor.Nombre_vendedor = Nombre_vendedor;
+            vendedor.Correo_vendedor = Correo_vendedor;
+            vendedor.Telefono_vendedor = Telefono_vendedor;
+            vendedor.Dui_vendedor = Dui_vendedor;
+            vendedor.Usuario_vendedor = Usuario_vendedor;
+            vendedor.contasena = contasena;
 
-            modelo.editarProducto(producto);
-            TempData["mensaje"] = "Persona modificada exitosamente";
-            return RedirectToAction("Index", modelo.listaProducto());
+            modelo.editarVendedor(vendedor);
+            TempData["mensaje"] = "Vendedor modificado exitosamente";
+            return RedirectToAction("Index", modelo.listaVendedor());
         }
         public ActionResult Eliminar(int id)
         {
 
-            modelo.eliminarProducto(id);
-            TempData["mensaje"] = "Producto eliminado exitosamente";
-            return RedirectToAction("Index", modelo.listaProducto());
-        }
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            modelo.eliminarVendedor(id);
+            TempData["mensaje"] = "Categoria eliminado exitosamente";
+            return RedirectToAction("Index", modelo.listaVendedor());
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

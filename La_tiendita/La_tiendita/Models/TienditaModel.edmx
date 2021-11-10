@@ -62,12 +62,12 @@
             <PropertyRef Name="Id_venta" />
           </Key>
           <Property Name="Id_venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Hora_venta" Type="time" Precision="3" />
+          <Property Name="Hora_venta" Type="time" Precision="7" />
           <Property Name="Fecha_venta" Type="date" />
           <Property Name="Total_venta" Type="decimal" Precision="6" Scale="2" />
           <Property Name="Id_vendedor" Type="int" />
         </EntityType>
-        <Association Name="FK__DetalleVe__Id_pr__4222D4EF">
+        <Association Name="FK__DetalleVe__Id_pr__2F10007B">
           <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
           <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
           <ReferentialConstraint>
@@ -79,7 +79,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleVe__Id_ve__412EB0B6">
+        <Association Name="FK__DetalleVe__Id_ve__2E1BDC42">
           <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
           <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
           <ReferentialConstraint>
@@ -91,7 +91,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__Id_cat__3B75D760">
+        <Association Name="FK__Producto__Id_cat__267ABA7A">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -103,7 +103,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ventas__Id_vende__3E52440B">
+        <Association Name="FK__Ventas__Id_vende__2B3F6F97">
           <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="0..1" />
           <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,6 +115,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="logeo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="La_tienditaDBModelStoreContainer">
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" Schema="dbo" store:Type="Tables" />
@@ -122,19 +157,19 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendedor" EntityType="Self.Vendedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__DetalleVe__Id_pr__4222D4EF" Association="Self.FK__DetalleVe__Id_pr__4222D4EF">
+          <AssociationSet Name="FK__DetalleVe__Id_pr__2F10007B" Association="Self.FK__DetalleVe__Id_pr__2F10007B">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="DetalleVenta" EntitySet="DetalleVenta" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleVe__Id_ve__412EB0B6" Association="Self.FK__DetalleVe__Id_ve__412EB0B6">
+          <AssociationSet Name="FK__DetalleVe__Id_ve__2E1BDC42" Association="Self.FK__DetalleVe__Id_ve__2E1BDC42">
             <End Role="Ventas" EntitySet="Ventas" />
             <End Role="DetalleVenta" EntitySet="DetalleVenta" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__Id_cat__3B75D760" Association="Self.FK__Producto__Id_cat__3B75D760">
+          <AssociationSet Name="FK__Producto__Id_cat__267ABA7A" Association="Self.FK__Producto__Id_cat__267ABA7A">
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ventas__Id_vende__3E52440B" Association="Self.FK__Ventas__Id_vende__3E52440B">
+          <AssociationSet Name="FK__Ventas__Id_vende__2B3F6F97" Association="Self.FK__Ventas__Id_vende__2B3F6F97">
             <End Role="Vendedor" EntitySet="Vendedor" />
             <End Role="Ventas" EntitySet="Ventas" />
           </AssociationSet>
@@ -150,7 +185,7 @@
           </Key>
           <Property Name="Id_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Id_cat__3B75D760" FromRole="Categoria" ToRole="Producto" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Id_cat__267ABA7A" FromRole="Categoria" ToRole="Producto" />
         </EntityType>
         <EntityType Name="DetalleVenta">
           <Key>
@@ -161,8 +196,8 @@
           <Property Name="Id_producto" Type="Int32" />
           <Property Name="Cantidad" Type="Int32" />
           <Property Name="Subtotal" Type="Decimal" Precision="6" Scale="2" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK__DetalleVe__Id_pr__4222D4EF" FromRole="DetalleVenta" ToRole="Producto" />
-          <NavigationProperty Name="Ventas" Relationship="Self.FK__DetalleVe__Id_ve__412EB0B6" FromRole="DetalleVenta" ToRole="Ventas" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__DetalleVe__Id_pr__2F10007B" FromRole="DetalleVenta" ToRole="Producto" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK__DetalleVe__Id_ve__2E1BDC42" FromRole="DetalleVenta" ToRole="Ventas" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -176,8 +211,8 @@
           <Property Name="precio_compra" Type="Decimal" Precision="6" Scale="2" />
           <Property Name="precio_venta" Type="Decimal" Precision="6" Scale="2" />
           <Property Name="Id_categoria" Type="Int32" />
-          <NavigationProperty Name="Categoria" Relationship="Self.FK__Producto__Id_cat__3B75D760" FromRole="Producto" ToRole="Categoria" />
-          <NavigationProperty Name="DetalleVenta" Relationship="Self.FK__DetalleVe__Id_pr__4222D4EF" FromRole="Producto" ToRole="DetalleVenta" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK__Producto__Id_cat__267ABA7A" FromRole="Producto" ToRole="Categoria" />
+          <NavigationProperty Name="DetalleVenta" Relationship="Self.FK__DetalleVe__Id_pr__2F10007B" FromRole="Producto" ToRole="DetalleVenta" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -200,21 +235,21 @@
           <Property Name="Dui_vendedor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Usuario_vendedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="contasena" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ventas" Relationship="Self.FK__Ventas__Id_vende__3E52440B" FromRole="Vendedor" ToRole="Ventas" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK__Ventas__Id_vende__2B3F6F97" FromRole="Vendedor" ToRole="Ventas" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
             <PropertyRef Name="Id_venta" />
           </Key>
           <Property Name="Id_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Hora_venta" Type="Time" Precision="3" />
+          <Property Name="Hora_venta" Type="Time" Precision="7" />
           <Property Name="Fecha_venta" Type="DateTime" Precision="0" />
           <Property Name="Total_venta" Type="Decimal" Precision="6" Scale="2" />
           <Property Name="Id_vendedor" Type="Int32" />
-          <NavigationProperty Name="DetalleVenta" Relationship="Self.FK__DetalleVe__Id_ve__412EB0B6" FromRole="Ventas" ToRole="DetalleVenta" />
-          <NavigationProperty Name="Vendedor" Relationship="Self.FK__Ventas__Id_vende__3E52440B" FromRole="Ventas" ToRole="Vendedor" />
+          <NavigationProperty Name="DetalleVenta" Relationship="Self.FK__DetalleVe__Id_ve__2E1BDC42" FromRole="Ventas" ToRole="DetalleVenta" />
+          <NavigationProperty Name="Vendedor" Relationship="Self.FK__Ventas__Id_vende__2B3F6F97" FromRole="Ventas" ToRole="Vendedor" />
         </EntityType>
-        <Association Name="FK__Producto__Id_cat__3B75D760">
+        <Association Name="FK__Producto__Id_cat__267ABA7A">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -226,7 +261,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleVe__Id_pr__4222D4EF">
+        <Association Name="FK__DetalleVe__Id_pr__2F10007B">
           <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
           <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
           <ReferentialConstraint>
@@ -238,7 +273,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleVe__Id_ve__412EB0B6">
+        <Association Name="FK__DetalleVe__Id_ve__2E1BDC42">
           <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
           <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
           <ReferentialConstraint>
@@ -250,7 +285,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ventas__Id_vende__3E52440B">
+        <Association Name="FK__Ventas__Id_vende__2B3F6F97">
           <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="0..1" />
           <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -269,23 +304,68 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Vendedor" EntityType="Self.Vendedor" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" />
-          <AssociationSet Name="FK__Producto__Id_cat__3B75D760" Association="Self.FK__Producto__Id_cat__3B75D760">
+          <AssociationSet Name="FK__Producto__Id_cat__267ABA7A" Association="Self.FK__Producto__Id_cat__267ABA7A">
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleVe__Id_pr__4222D4EF" Association="Self.FK__DetalleVe__Id_pr__4222D4EF">
+          <AssociationSet Name="FK__DetalleVe__Id_pr__2F10007B" Association="Self.FK__DetalleVe__Id_pr__2F10007B">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="DetalleVenta" EntitySet="DetalleVenta" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleVe__Id_ve__412EB0B6" Association="Self.FK__DetalleVe__Id_ve__412EB0B6">
+          <AssociationSet Name="FK__DetalleVe__Id_ve__2E1BDC42" Association="Self.FK__DetalleVe__Id_ve__2E1BDC42">
             <End Role="Ventas" EntitySet="Ventas" />
             <End Role="DetalleVenta" EntitySet="DetalleVenta" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ventas__Id_vende__3E52440B" Association="Self.FK__Ventas__Id_vende__3E52440B">
+          <AssociationSet Name="FK__Ventas__Id_vende__2B3F6F97" Association="Self.FK__Ventas__Id_vende__2B3F6F97">
             <End Role="Vendedor" EntitySet="Vendedor" />
             <End Role="Ventas" EntitySet="Ventas" />
           </AssociationSet>
+          <FunctionImport Name="logeo" ReturnType="Collection(Int32)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(La_tienditaDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(La_tienditaDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -360,6 +440,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="logeo" FunctionName="La_tienditaDBModel.Store.logeo" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="La_tienditaDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="La_tienditaDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="La_tienditaDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="La_tienditaDBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="La_tienditaDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="La_tienditaDBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="La_tienditaDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="La_tienditaDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="La_tienditaDBModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

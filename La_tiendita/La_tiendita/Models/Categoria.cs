@@ -20,6 +20,7 @@ namespace La_tiendita.Models
         {
             this.Producto = new HashSet<Producto>();
         }
+
         [Display(Name = "Id Categoria")]
         public int Id_categoria { get; set; }
 

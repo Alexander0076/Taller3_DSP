@@ -131,6 +131,7 @@
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\DetalleVentaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +144,12 @@
       <DependentUpon>TienditaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Producto.cs">
+      <DependentUpon>TienditaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>TienditaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>TienditaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
@@ -182,8 +189,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\TienditaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TienditaModel.Context.cs</LastGenOutput>
       <DependentUpon>TienditaModel.edmx</DependentUpon>
+      <LastGenOutput>TienditaModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\TienditaModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -210,6 +217,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Home\css\font-awesome.min.css" />
+    <Content Include="Views\Home\css\style.css" />
+    <Content Include="Views\Home\fonts\fontawesome-webfont.svg" />
+    <Content Include="Views\Home\images\bg.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -221,11 +232,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Insertar.cshtml" />
-    <Content Include="Views\Home\Modificar.cshtml" />
+    <Content Include="Views\Producto\About.cshtml" />
+    <Content Include="Views\Producto\Contact.cshtml" />
+    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Producto\Insertar.cshtml" />
+    <Content Include="Views\Producto\Modificar.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Categoria\Insertar.cshtml" />
     <Content Include="Views\Categoria\Modificar.cshtml" />
@@ -235,6 +246,15 @@
     <Content Include="Views\DetalleVenta\Index.cshtml" />
     <Content Include="Views\DetalleVenta\Insertar.cshtml" />
     <Content Include="Views\DetalleVenta\Modificar.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Insertar.cshtml" />
+    <Content Include="Views\Home\Modificar.cshtml" />
+    <Content Include="Views\Home\Tabla.cshtml" />
+    <Content Include="Views\Home\fonts\fontawesome-webfont.eot" />
+    <Content Include="Views\Home\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Views\Home\fonts\fontawesome-webfont.woff" />
+    <Content Include="Views\Home\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Views\Home\fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
