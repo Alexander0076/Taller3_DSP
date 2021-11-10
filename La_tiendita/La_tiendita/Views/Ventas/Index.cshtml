@@ -1,0 +1,50 @@
+﻿@model IEnumerable<La_tiendita.Models.Ventas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ventas</h2>
+<p>
+    @Html.ActionLink("Agregar", "Insertar", null, new { @class = "btn btn-info" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Hora_venta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_venta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total_venta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendedor.Nombre_vendedor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hora_venta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_venta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total_venta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vendedor.Nombre_vendedor)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Modificar", new { id = item.Id_venta }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id_venta }, new { miatributo = "valor1", @class = "btn btn-danger", onclick = "return confirm('¿Estas seguro de eliminar este registro?');" }) 
+        </td>
+    </tr>
+}
+
+</table>

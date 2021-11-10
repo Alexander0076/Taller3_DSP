@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="La_tienditaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="Id_categoria" />
+    </Key>
+    <Property Name="Id_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Id_cat__3B75D760" FromRole="Categoria" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="DetalleVenta">
+    <Key>
+      <PropertyRef Name="Id_detalle" />
+    </Key>
+    <Property Name="Id_detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_venta" Type="Int32" />
+    <Property Name="Id_producto" Type="Int32" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Subtotal" Type="Decimal" Precision="6" Scale="2" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__DetalleVe__Id_pr__4222D4EF" FromRole="DetalleVenta" ToRole="Producto" />
+    <NavigationProperty Name="Ventas" Relationship="Self.FK__DetalleVe__Id_ve__412EB0B6" FromRole="DetalleVenta" ToRole="Ventas" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="Id_producto" />
+    </Key>
+    <Property Name="Id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="produtco" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion_producto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_caducidad" Type="DateTime" Precision="0" />
+    <Property Name="existencia_de_producto" Type="Int32" />
+    <Property Name="precio_compra" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="precio_venta" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Id_categoria" Type="Int32" />
+    <NavigationProperty Name="Categoria" Relationship="Self.FK__Producto__Id_cat__3B75D760" FromRole="Producto" ToRole="Categoria" />
+    <NavigationProperty Name="DetalleVenta" Relationship="Self.FK__DetalleVe__Id_pr__4222D4EF" FromRole="Producto" ToRole="DetalleVenta" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Vendedor">
+    <Key>
+      <PropertyRef Name="Id_vendedor" />
+    </Key>
+    <Property Name="Id_vendedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_vendedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Correo_vendedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono_vendedor" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="Dui_vendedor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario_vendedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="contasena" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Ventas" Relationship="Self.FK__Ventas__Id_vende__3E52440B" FromRole="Vendedor" ToRole="Ventas" />
+  </EntityType>
+  <EntityType Name="Ventas">
+    <Key>
+      <PropertyRef Name="Id_venta" />
+    </Key>
+    <Property Name="Id_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Hora_venta" Type="Time" Precision="3" />
+    <Property Name="Fecha_venta" Type="DateTime" Precision="0" />
+    <Property Name="Total_venta" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="Id_vendedor" Type="Int32" />
+    <NavigationProperty Name="DetalleVenta" Relationship="Self.FK__DetalleVe__Id_ve__412EB0B6" FromRole="Ventas" ToRole="DetalleVenta" />
+    <NavigationProperty Name="Vendedor" Relationship="Self.FK__Ventas__Id_vende__3E52440B" FromRole="Ventas" ToRole="Vendedor" />
+  </EntityType>
+  <Association Name="FK__Producto__Id_cat__3B75D760">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id_categoria" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="Id_categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleVe__Id_pr__4222D4EF">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+    <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Id_producto" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="Id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleVe__Id_ve__412EB0B6">
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+    <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ventas">
+        <PropertyRef Name="Id_venta" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="Id_venta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ventas__Id_vende__3E52440B">
+    <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="0..1" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendedor">
+        <PropertyRef Name="Id_vendedor" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="Id_vendedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="La_tienditaDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+    <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Vendedor" EntityType="Self.Vendedor" />
+    <EntitySet Name="Ventas" EntityType="Self.Ventas" />
+    <AssociationSet Name="FK__Producto__Id_cat__3B75D760" Association="Self.FK__Producto__Id_cat__3B75D760">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleVe__Id_pr__4222D4EF" Association="Self.FK__DetalleVe__Id_pr__4222D4EF">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleVe__Id_ve__412EB0B6" Association="Self.FK__DetalleVe__Id_ve__412EB0B6">
+      <End Role="Ventas" EntitySet="Ventas" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ventas__Id_vende__3E52440B" Association="Self.FK__Ventas__Id_vende__3E52440B">
+      <End Role="Vendedor" EntitySet="Vendedor" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

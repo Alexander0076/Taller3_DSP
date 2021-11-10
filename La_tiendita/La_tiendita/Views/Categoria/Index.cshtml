@@ -1,0 +1,47 @@
+﻿@model IEnumerable<La_tiendita.Models.Categoria>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Categoria</h2>
+
+<p>
+    @Html.ActionLink("Agregar", "Insertar", null, new { @class = "btn btn-info" })
+</p>
+
+<br />
+
+<div class="form-inline my-2 my-lg-0">
+    @using (Html.BeginForm("Buscar", "Categoria", FormMethod.Post))
+    {
+
+
+        <input class="form-control mr-sm-2" name="valor" type="search" placeholder="Search" aria-label="Search">
+        <input type="submit" value="Buscar" class="btn btn-outline-success my-2 my-sm-0" />
+    }
+</div>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.categoria)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.categoria)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Modificar", new { id = item.Id_categoria }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id_categoria }, new { miatributo = "valor1", @class = "btn btn-danger", onclick = "return confirm('¿Estas seguro de eliminar este registro?');" }) |
+        </td>
+    </tr>
+    }
+
+</table>
